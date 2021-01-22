@@ -14,6 +14,13 @@ public class PessoasService {
 
 	private final AtomicLong count = new AtomicLong();
 	
+	public Pessoas execute(Pessoas pessoas) {
+		/* O controller chama o execute que é o metodo que contem a logica que vai até a base de dados e 
+		 * depois o resultado é retornado para o controller que é enviado para o JSon para o client
+		 * */
+		return pessoas;
+	}
+	
 	public Pessoas findById(String id) {
 		Pessoas pessoas = new Pessoas();
 		

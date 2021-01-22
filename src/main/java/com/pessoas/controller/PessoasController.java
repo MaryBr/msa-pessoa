@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,15 +25,21 @@ public class PessoasController {
 	 *  Com a anotação: @Autowired Classe */
 	
 	@RequestMapping(value ="/consulta/{id}", method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Pessoas findById(@PathVariable("id") String id) {
-		
+	public Pessoas findById(@PathVariable("id") String id) {		
 		return pessoasService.findById(id);
 		
 	}
 	
 	@RequestMapping(value ="/consultaTodos", method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Pessoas> findAll() {
-		
 		return pessoasService.findAll();		
+	}
+	
+	//utilizando o verbo post
+	@RequestMapping(value ="/consultaExecute", method=RequestMethod.POST, 
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)//produz e consome JSON
+	public Pessoas execute(@RequestBody Pessoas pessoas ){//requestbody corpo da requisição
+		return pessoasService.execute(pessoas);		
 	}
 }
