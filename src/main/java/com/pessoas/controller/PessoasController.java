@@ -42,4 +42,18 @@ public class PessoasController {
 	public Pessoas execute(@RequestBody Pessoas pessoas ){//requestbody corpo da requisição
 		return pessoasService.execute(pessoas);		
 	}
+	
+	@RequestMapping(value ="/consultaExecuteUpdate", method=RequestMethod.PUT, //
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)//produz e consome JSON
+	public Pessoas executeUpdate(@RequestBody Pessoas pessoas ){//requestbody corpo da requisição
+		return pessoasService.executeUpdate(pessoas);		
+	}
+	
+	@RequestMapping(value ="/consultaDelete", method=RequestMethod.DELETE, //
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)//produz e consome JSON
+	public void delete(@PathVariable("id") String id){//requestbody corpo da requisição
+		pessoasService.delete(id);
+	}
 }

@@ -21,6 +21,17 @@ public class PessoasService {
 		return pessoas;
 	}
 	
+	
+	public Pessoas executeUpdate(Pessoas pessoas) {
+		
+		return pessoas;
+	}
+	
+	
+	public void delete (String id) {
+		
+	}
+	
 	public Pessoas findById(String id) {
 		Pessoas pessoas = new Pessoas();
 		
