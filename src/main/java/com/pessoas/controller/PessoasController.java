@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,18 +40,20 @@ public class PessoasController {
 	}
 	
 	//utilizando o verbo post
-	@PostMapping(value ="/consultaExecute")//produz e consome JSON
+	@PostMapping(value ="/consultaExecute")
 	public Pessoas execute(@RequestBody Pessoas pessoas ){//requestbody corpo da requisição
 		return pessoasService.execute(pessoas);		
 	}
 	
-	@PutMapping(value ="/consultaExecuteUpdate")//produz e consome JSON
+	@PutMapping(value ="/consultaExecuteUpdate")
 	public Pessoas executeUpdate(@RequestBody Pessoas pessoas ){//requestbody corpo da requisição
 		return pessoasService.executeUpdate(pessoas);		
 	}
 	
-	@DeleteMapping(value ="/consultaDelete")//produz e consome JSON
-	public void delete(@PathVariable("id") Long id){//requestbody corpo da requisição
+	@DeleteMapping(value ="/consultaDelete")
+	public ResponseEntity delete(@PathVariable("id") Long id){
 		pessoasService.delete(id);
+		
+		return ResponseEntity.ok().build();
 	}
 }
