@@ -5,10 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pessoas.model.Pessoas;
+import com.pessoas.data.model.Pessoas;
+import com.pessoas.exception.ResourceNotFoundException;
 import com.pessoas.repository.PessoasRepository;
-
-import exception.ResourceNotFoundException;
 
 
 @Service //spring cuida da injeção de dependencia. Quando eu precisar de usar essa classe em outro lugar eu nao precisarei

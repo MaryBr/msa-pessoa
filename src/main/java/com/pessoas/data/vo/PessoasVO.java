@@ -1,37 +1,20 @@
-package com.pessoas.model;
+package com.pessoas.data.vo;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="pessoas")
-public class Pessoas implements Serializable{
-
+public class PessoasVO implements Serializable{
+//classe de transferencia de dados
+	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long   id;
-	
-	@Column(name= "primeiro_Nome", length=10, nullable = false)
-	private String primeiroNome;
-	
-	@Column(name= "ultimo_Nome", length=40, nullable = false)
+	private Long   id;	
+	private String primeiroNome;	
 	private String UltimoNome;
-	
-	@Column( nullable = false, length = 50)
 	private String endereco;
-	
-	@Column( nullable = false, length = 3)
 	private String sexo;
 	
-	public Pessoas(){}
+	public PessoasVO(){}
 	
 	public Long getId() {
 		return id;
@@ -84,7 +67,7 @@ public class Pessoas implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pessoas other = (Pessoas) obj;
+		PessoasVO other = (PessoasVO) obj;
 		if (UltimoNome == null) {
 			if (other.UltimoNome != null)
 				return false;
@@ -112,7 +95,5 @@ public class Pessoas implements Serializable{
 			return false;
 		return true;
 	}
-
-	
 	
 }

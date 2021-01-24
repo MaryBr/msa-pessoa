@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pessoas.model.Pessoas;
+import com.pessoas.data.vo.PessoasVO;
 import com.pessoas.service.PessoasService;
 
 @RestController
@@ -29,24 +29,24 @@ public class PessoasController {
 	 *  Com a anotação: @Autowired Classe */
 	
 	@GetMapping(value ="/consulta/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)//method=RequestMethod.GET = @GetMapping
-	public Pessoas findById(@PathVariable("id") Long id) {		
+	public PessoasVO findById(@PathVariable("id") Long id) {		
 		return pessoasService.findById(id);
 		
 	}
 	
 	@GetMapping(value ="/consultaTodos")
-	public List<Pessoas> findAll() {
+	public List<PessoasVO> findAll() {
 		return pessoasService.findAll();		
 	}
 	
 	//utilizando o verbo post
 	@PostMapping(value ="/consultaExecute")
-	public Pessoas execute(@RequestBody Pessoas pessoas ){//requestbody corpo da requisição
+	public PessoasVO execute(@RequestBody PessoasVO pessoas ){//requestbody corpo da requisição
 		return pessoasService.execute(pessoas);		
 	}
 	
 	@PutMapping(value ="/consultaExecuteUpdate")
-	public Pessoas executeUpdate(@RequestBody Pessoas pessoas ){//requestbody corpo da requisição
+	public PessoasVO executeUpdate(@RequestBody PessoasVO pessoas ){//requestbody corpo da requisição
 		return pessoasService.executeUpdate(pessoas);		
 	}
 	
