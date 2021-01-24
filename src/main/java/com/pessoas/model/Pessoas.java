@@ -2,14 +2,33 @@ package com.pessoas.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="pessoas")
 public class Pessoas implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long   id;
+	
+	@Column(name= "primeiro_Nome", length=10, nullable = false)
 	private String primeiroNome;
+	
+	@Column(name= "ultimo_Nome", length=40, nullable = false)
 	private String UltimoNome;
+	
+	@Column( nullable = false, length = 50)
 	private String endereco;
+	
+	@Column( nullable = false, length = 3)
 	private String sexo;
 	
 	public Pessoas(){}

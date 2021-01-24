@@ -1,75 +1,61 @@
 package com.pessoas.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pessoas.model.Pessoas;
+import com.pessoas.repository.PessoasRepository;
+
+import exception.ResourceNotFoundException;
+
 
 @Service //spring cuida da injeção de dependencia. Quando eu precisar de usar essa classe em outro lugar eu nao precisarei
 //dar um new nela
 public class PessoasService {
 
-	private final AtomicLong count = new AtomicLong();
+	@Autowired
+	PessoasRepository pessoasRepository;
+
+
 	
 	public Pessoas execute(Pessoas pessoas) {
 		/* O controller chama o execute que é o metodo que contem a logica que vai até a base de dados e 
 		 * depois o resultado é retornado para o controller que é enviado para o JSon para o client
 		 * */
-		return pessoas;
+		return pessoasRepository.save(pessoas);
 	}
 	
-	
-	public Pessoas executeUpdate(Pessoas pessoas) {
-		
-		return pessoas;
+	public List<Pessoas> findAll (){			
+		return pessoasRepository.findAll();
 	}
 	
-	
-	public void delete (String id) {
-		
+	public Pessoas findById(Long id) {
+				
+		return  pessoasRepository.findById(id).
+				orElseThrow(()->new ResourceNotFoundException("Não foi encontrados registros para esse id"));
 	}
 	
-	public Pessoas findById(String id) {
-		Pessoas pessoas = new Pessoas();
-		
-		pessoas.setId(count.incrementAndGet());
-		pessoas.setPrimeiroNome("Marina");
-		pessoas.setUltimoNome("Neri");
-		pessoas.setEndereco("xxxxx - xxxx");
-		pessoas.setSexo("Feminino");
-		
-		return  pessoas;
-	}
-	
-	
-	public List<Pessoas> findAll (){
-		/*metodo que retorna todas as pessoas cadastradas*/
-		
-		List<Pessoas> pessoas = new ArrayList<>();
-		
-		for(int i =0; i<4; i++) {
-			//mockPessoas
-			Pessoas pessoa = mockPessoa(i);
-			pessoas.add(pessoa);
-		}
-		
-		return pessoas;
-	}
 
-
-	private Pessoas mockPessoa(int i) {
+	public Pessoas executeUpdate(Pessoas p) {
 		
-		Pessoas pessoas = new Pessoas();
-		
-		pessoas.setId(count.getAndIncrement());
-		pessoas.setPrimeiroNome("Nome " + +i);
-		pessoas.setUltimoNome("Sobrenome");
-		pessoas.setEndereco("xxxxx - Brasil");
-		pessoas.setSexo("Feminino");
-		
-		return pessoas;
+		Pessoas pessoa = pessoasRepository.findById(p.getId()).
+				orElseThrow(()->new ResourceNotFoundException("Não foi encontrados registros para esse id"));
+				
+		pessoa.setPrimeiroNome(p.getPrimeiroNome());
+		pessoa.setUltimoNome(p.getUltimoNome());
+		pessoa.setEndereco(p.getEndereco());
+		pessoa.setSexo(p.getSexo());
+		return pessoasRepository.save(pessoa);
 	}
+	
+	
+	public void delete (Long id) {
+		
+		Pessoas pessoa = pessoasRepository.findById(id).
+				orElseThrow(()->new ResourceNotFoundException("Não foi encontrados registros para esse id"));
+		pessoasRepository.delete(pessoa);
+	}
+	
 }

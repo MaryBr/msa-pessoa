@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pessoas.model.Pessoas;
@@ -24,36 +27,30 @@ public class PessoasController {
 	 * sem o autowired: Classe classe = new Classe().
 	 *  Com a anotação: @Autowired Classe */
 	
-	@RequestMapping(value ="/consulta/{id}", method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Pessoas findById(@PathVariable("id") String id) {		
+	@GetMapping(value ="/consulta/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)//method=RequestMethod.GET = @GetMapping
+	public Pessoas findById(@PathVariable("id") Long id) {		
 		return pessoasService.findById(id);
 		
 	}
 	
-	@RequestMapping(value ="/consultaTodos", method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value ="/consultaTodos")
 	public List<Pessoas> findAll() {
 		return pessoasService.findAll();		
 	}
 	
 	//utilizando o verbo post
-	@RequestMapping(value ="/consultaExecute", method=RequestMethod.POST, 
-			produces = MediaType.APPLICATION_JSON_VALUE,
-			consumes = MediaType.APPLICATION_JSON_VALUE)//produz e consome JSON
+	@PostMapping(value ="/consultaExecute")//produz e consome JSON
 	public Pessoas execute(@RequestBody Pessoas pessoas ){//requestbody corpo da requisição
 		return pessoasService.execute(pessoas);		
 	}
 	
-	@RequestMapping(value ="/consultaExecuteUpdate", method=RequestMethod.PUT, //
-			produces = MediaType.APPLICATION_JSON_VALUE,
-			consumes = MediaType.APPLICATION_JSON_VALUE)//produz e consome JSON
+	@PutMapping(value ="/consultaExecuteUpdate")//produz e consome JSON
 	public Pessoas executeUpdate(@RequestBody Pessoas pessoas ){//requestbody corpo da requisição
 		return pessoasService.executeUpdate(pessoas);		
 	}
 	
-	@RequestMapping(value ="/consultaDelete", method=RequestMethod.DELETE, //
-			produces = MediaType.APPLICATION_JSON_VALUE,
-			consumes = MediaType.APPLICATION_JSON_VALUE)//produz e consome JSON
-	public void delete(@PathVariable("id") String id){//requestbody corpo da requisição
+	@DeleteMapping(value ="/consultaDelete")//produz e consome JSON
+	public void delete(@PathVariable("id") Long id){//requestbody corpo da requisição
 		pessoasService.delete(id);
 	}
 }
