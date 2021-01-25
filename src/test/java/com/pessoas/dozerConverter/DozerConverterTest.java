@@ -41,20 +41,20 @@ public class DozerConverterTest {
 	        Assert.assertEquals("Addres Test0", outputZero.getEndereco());
 	        Assert.assertEquals("Male", outputZero.getSexo());
 	        
-	        PessoasVO outputSeven = outputList.get(7);
+	        PessoasVO outputSeven = outputList.get(2);
 	        
 	        Assert.assertEquals(Long.valueOf(7L), outputSeven.getId());
-	        Assert.assertEquals("First Name Test7", outputSeven.getPrimeiroNome());
-	        Assert.assertEquals("Last Name Test7", outputSeven.getUltimoNome());
-	        Assert.assertEquals("Addres Test7", outputSeven.getEndereco());
+	        Assert.assertEquals("First Name Test2", outputSeven.getPrimeiroNome());
+	        Assert.assertEquals("Last Name Test2", outputSeven.getUltimoNome());
+	        Assert.assertEquals("Addres Test2", outputSeven.getEndereco());
 	        Assert.assertEquals("Female", outputSeven.getSexo());
 	        
-	        PessoasVO outputTwelve = outputList.get(12);
+	        PessoasVO outputTwelve = outputList.get(3);
 	        
 	        Assert.assertEquals(Long.valueOf(12L), outputTwelve.getId());
-	        Assert.assertEquals("First Name Test12", outputTwelve.getPrimeiroNome());
-	        Assert.assertEquals("Last Name Test12", outputTwelve.getUltimoNome());
-	        Assert.assertEquals("Addres Test12", outputTwelve.getEndereco());
+	        Assert.assertEquals("First Name Test3", outputTwelve.getPrimeiroNome());
+	        Assert.assertEquals("Last Name Test3", outputTwelve.getUltimoNome());
+	        Assert.assertEquals("Addres Test3", outputTwelve.getEndereco());
 	        Assert.assertEquals("Male", outputTwelve.getSexo());
 	    }
 
@@ -79,12 +79,12 @@ public class DozerConverterTest {
 	        Assert.assertEquals("Addres Test0", outputZero.getEndereco());
 	        Assert.assertEquals("Male", outputZero.getSexo());
 	        
-	        Pessoas outputSeven = outputList.get(7);
+	        Pessoas outputSeven = outputList.get(2);
 	        
 	        Assert.assertEquals(Long.valueOf(7L), outputSeven.getId());
-	        Assert.assertEquals("First Name Test7", outputSeven.getPrimeiroNome());
-	        Assert.assertEquals("Last Name Test7", outputSeven.getUltimoNome());
-	        Assert.assertEquals("Addres Test7", outputSeven.getEndereco());
+	        Assert.assertEquals("First Name Test2", outputSeven.getPrimeiroNome());
+	        Assert.assertEquals("Last Name Test2", outputSeven.getUltimoNome());
+	        Assert.assertEquals("Addres Test2", outputSeven.getEndereco());
 	        Assert.assertEquals("Female", outputSeven.getSexo());
 	        
 	       
