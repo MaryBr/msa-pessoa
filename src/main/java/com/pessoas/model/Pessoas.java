@@ -2,6 +2,9 @@ package com.pessoas.model;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({"id","primeiroNome","UltimoNome","sexo","endereco"})
 public class Pessoas implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -92,8 +95,5 @@ public class Pessoas implements Serializable{
 		} else if (!sexo.equals(other.sexo))
 			return false;
 		return true;
-	}
-
-	
-	
+	}	
 }
